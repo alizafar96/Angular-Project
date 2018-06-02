@@ -1,0 +1,154 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<form >
+<div class="container" *ngIf="!getInfo">
+    <h2>Book your ticket now !</h2>
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label >Leaving from</label>
+          <input type="text" class="form-control" name="leaving_from"
+           [(ngModel)]="newRoute.leaving_from" list="dep">
+          <datalist id="dep">
+            <option *ngFor="let p of points">{{p}}</option>
+          </datalist>
+        </div>
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label >Going to</label>
+          <input type="text" class="form-control" name="going_to"
+          [(ngModel)]="newRoute.going_to" list="arr">
+         <datalist id="arr">
+           
+           <option *ngFor="let p of points">
+             <div *ngIf="newRoute.leaving_from!=p">{{p}}</div></option>
+         </datalist>
+        </div>
+      </div>
+      <!--  col-md-6   -->
+     </div>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label >Date</label>
+          <input type="date" class="form-control" placeholder="" name="date"
+          [(ngModel)]="newRoute.date">
+        </div>
+
+
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">   
+      </div>
+      <!--  col-md-6   -->
+    </div>
+    <!--  row   -->
+          <br/>
+          <input type="submit" class="btn btn-primary" value="Submit"   (click)="ValidategetInfo()"
+          >
+      <!--  col-md-6   -->
+    <!--  row   -->
+</div>
+
+<!--            Personal Info Form                 -->
+
+<div class="container" *ngIf="getInfo && !getBuses">
+      <h3>Please provide your personal info</h3>
+      <br/>
+      <br/>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Enter Your Name</label>
+            <input type="text" class="form-control" placeholder="" name="username"
+            [(ngModel)]="newTicket.username">
+          </div>
+        </div>
+        <!--  col-md-6   -->
+  
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="mobile_no">Enter Your Mobile no.</label>
+            <input type="text" class="form-control" placeholder="" name="mobile_no"
+            [(ngModel)]="newTicket.mobile_no">
+          </div>
+        </div>
+        <!--  col-md-6   -->
+      </div>
+
+      <div class="row">
+
+          <div class="col-md-6">
+              <label for="pass">Passangers</label>
+              <input type="number" class="form-control" placeholder="enter no. of passangers"
+              name="passangers" [(ngModel)]="newTicket.passangers">
+          </div>
+
+          <div class="col-md-6">
+              
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-6">
+              <br/>
+              <button type="submit" class="btn btn-primary" (click)="NowshowBuses()">
+                Submit
+              </button>
+          </div>
+      </div>
+  
+    
+</div>
+</form>
+
+<!--              table           -->
+<br/>
+<br/>
+<div class="container text-center" *ngIf="getBuses" >
+    <h2>Select Bus </h2>
+    	<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Available Buses</h3>
+						<div class="pull-right">
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+								
+							</span>
+						</div>
+					</div>
+					
+					<table class="table table-hover" id="dev-table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Bus</th>
+								<th>Arrival time</th>
+								<th>Departure time</th>
+							</tr>
+						</thead>
+						<tbody>
+              <tr *ngFor="let i of buses; let y=index"
+              (click)="selectedBus(i)">
+								<td>{{y}}</td>
+								<td>{{i.name}}</td>
+								<td>{{y+1}}:40</td>
+								<td>{{y+2}}:30</td>
+							</tr>
+						
+						</tbody>
+					</table>
+				</div>
+      </div>
+      

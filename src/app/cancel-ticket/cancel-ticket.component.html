@@ -1,0 +1,36 @@
+<form>
+    <div class="container">
+    <h2>Cancel Ticket</h2>
+    <br/>
+    <br/>
+    <h5>please enter following info. to find your ticket</h5>
+    <br/>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label >User name</label>
+          <input type="text" class="form-control" placeholder="enter your name"
+          name="usernname" [(ngModel)]="name" 
+          >
+        </div>
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label >Mobile no.</label>
+          <input type="text" class="form-control" placeholder="enter your mobile no."
+          name="mobile_no" [(ngModel)]="mobile_no">
+        </div>
+      </div>
+      <!--  col-md-6   -->
+    </div> 
+    <button type="submit" class="btn btn-primary" 
+    (click)="searchTicket()">Submit</button>  
+
+    <div *ngIf="msg">
+      <br/>
+        <h6>your booking has been canceled</h6>
+    </div>
+  </div>
+</form>

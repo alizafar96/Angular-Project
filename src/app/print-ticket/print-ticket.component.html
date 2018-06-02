@@ -1,0 +1,96 @@
+<form>
+<div class="container" *ngIf="!showTicket">
+
+      <h2>Print Ticket</h2>
+      <br/>
+      <br/>
+      <h5>please enter following info. to find your ticket</h5>
+      <br/>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label >User name</label>
+            <input type="text" class="form-control" placeholder="enter your name"
+            name="usernname" [(ngModel)]="name" 
+            >
+          </div>
+        </div>
+        <!--  col-md-6   -->
+  
+        <div class="col-md-6">
+          <div class="form-group">
+            <label >Mobile no.</label>
+            <input type="text" class="form-control" placeholder="enter your mobile no."
+            name="mobile_no" [(ngModel)]="mobile_no">
+          </div>
+        </div>
+        <!--  col-md-6   -->
+      </div> 
+      <button type="submit" class="btn btn-primary" 
+      (click)="searchTicket()">Submit</button>
+    
+  </div>
+
+  
+  
+<!--        ticket            -->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+  <div class="wrapper" *ngIf="showTicket">
+    <div class="container">
+      <h2 class="page-title">{{name}}, here here you go!</h2>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="ticket-card active">
+            <div class="cover">
+              <img src="" alt="" />
+              <div class="info">
+                <div class="going">
+                  <i class="fa fa-group"></i> <!>
+                </div>
+                <div class="tickets-left">
+                  <i class="fa fa-ticket"></i> <!>
+                </div>
+              </div>
+            </div>
+            <div class="body">
+              <div class="artist">
+                <h6 class="info">no. of passangers- {{ticket.passangers}}</h6>
+                <h4 class="name"> {{ticket.bus.name}} Bus</h4>
+              </div>
+              <div class="price">
+                <div class="from">Charges</div>
+                <div class="value">
+                  <b>$</b>{{ticket.charges}}
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="info">
+                <p class="location">
+                  <i class="fa fa-map-marker"></i> {{ticket.bus.route.leaving_from}} to {{ticket.bus.route.going_to}}
+                </p>
+                <p class="date">
+                  <i class="fa fa-calendar"></i> {{ticket.bus.route.date}}
+                </p>
+              </div>
+              <div class="clearfix"></div>
+            </div>           
+          </div>
+        </div>
+
+        
+
+      </div>
+    </div>
+  </div>
+
+
+</form>
